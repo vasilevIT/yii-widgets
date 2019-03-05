@@ -1,7 +1,7 @@
 This extension enhances or adds functionality to existing Yii Framework 2 Widgets to make available other bundled features available in Bootstrap 3.0, new HTML 5 features and affiliated Bootstrap extras.
 
 The **yii2-widgets** bundle automatically includes extensions or widgets from these sub repositories for accessing via `\valievIT\widgets\` namespace.
-- [yii2-lazy-selec2]
+- [yii2-lazy-select2]
 
 
 ## Installation
