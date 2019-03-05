@@ -1,0 +1,28 @@
+{
+  "name": "vasilevit/yii2-widgets",
+  "description": "Widgets for Yii2",
+  "keywords": [
+    "widget",
+    "yii2",
+    "extension",
+    "select2",
+    "PHP"
+  ],
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Anton Vasiliev",
+      "email": "bysslaev@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "vasilevit\\widgets\\": "src"
+    }
+  },
+  "require": {
+    "kartik-v/yii2-widgets": "*",
+  }
+}
