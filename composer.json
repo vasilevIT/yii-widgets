@@ -23,6 +23,7 @@
     }
   },
   "require": {
+    "2amigos/yii2-file-upload-widget": "~1.0",
     "kartik-v/yii2-widgets": "*",
   }
 }

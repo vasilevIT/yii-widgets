@@ -11,8 +11,7 @@ this extension's requirements and dependencies.
 
 ### Pre-requisites
 
-> Note: Check the [composer.json](https://github.com/kartik-v/yii2-widgets/blob/master/composer.json) for this extension's requirements and dependencies. 
-Read this [web tip /wiki](http://webtips.krajee.com/setting-composer-minimum-stability-application/) on setting the `minimum-stability` settings for your application's composer.json.
+> Note: Check the [composer.json](https://github.com/vasilevIT/yii2-widgets/blob/master/composer.json) for this extension's requirements and dependencies. 
 
 ### Install
 
@@ -29,3 +28,14 @@ or add
 ```
 
 to the ```require``` section of your `composer.json` file.
+
+# Use
+
+```$php
+$form->field($model, 'contact_id')->widget(LazyRefererInput::class, [
+    'url' => '/api/some-method',
+    'options' => [
+        'placeholder' => 'Some placeholder',
+    ]
+])
+```
