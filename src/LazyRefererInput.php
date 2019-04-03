@@ -45,39 +45,39 @@ class LazyRefererInput extends InputWidget
         $url = $this->url;
 
         $this->initSelection = <<< 'JS'
-        var initSelection = function(element, callback) {
-    var title=$(element).val();
-    if (title !== "") {
-        $.ajax("{url}", {
-            dataType: "json",
-            type: 'post',
-            data: {
-                title: '',
-                id: title
+            var initSelection = function(element, callback) {
+            var title=$(element).val();
+            if (title !== "") {
+                $.ajax("{url}", {
+                    dataType: "json",
+                    type: 'post',
+                    data: {
+                        title: '',
+                        id: title
+                    }
+                }).done(function(data) { callback(data.results);});
             }
-        }).done(function(data) { callback(data.results);});
-    }
-}
+        }
 
 JS;
         $this->initSelectionExpression = new JsExpression('initSelection');
         $this->formatResultsExpression = new JsExpression('formatResults');
         $this->formatResults = <<< 'JS'
         var formatResults = function (item) {
-    if (!item.name) {
-        return item.text;
-    }
-    var markup =
-'<div style="100%">' + 
-    '<div class="query-result-title">' +
-        '<b style="margin-left:5px">' + item.name + '</b>' + 
-    '</div>' +
-    '<div class="query-result-description">' +
-        '<p style="margin-left:5px; font-size:10px; color:#5dade1;"> ' + item.subname +  ' (' + item.id + ')</p>' + 
-    '</div>' +
-'</div>';
-    return '<div style="overflow:hidden;">' + markup + '</div>';
-};
+            if (!item.name) {
+                return item.text;
+            }
+            var markup =
+                '<div style="100%">' + 
+                    '<div class="query-result-title">' +
+                        '<b style="margin-left:5px">' + item.name + '</b>' + 
+                    '</div>' +
+                    '<div class="query-result-description">' +
+                        '<p style="margin-left:5px; font-size:10px; color:#5dade1;"> ' + item.subname +  ' (' + item.id + ')</p>' + 
+                    '</div>' +
+                '</div>';
+                    return '<div style="overflow:hidden;">' + markup + '</div>';
+        };
 JS;
         $this->processResults = '';
         $this->initSelection = str_replace('{url}', $this->url, $this->initSelection);
@@ -115,6 +115,10 @@ JS;
         }
         if (!empty($this->processResultsExpression)) {
             $this->pluginOptions['ajax']['processResults'] = $this->processResultsExpression;
+        }
+
+        if (!isset($this->options['placeholder']) || empty($this->options['placeholder'])) {
+            $this->options['placeholder'] = '';
         }
 
         echo Select2::widget([
