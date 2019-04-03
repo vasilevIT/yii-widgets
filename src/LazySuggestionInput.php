@@ -83,7 +83,7 @@ CSS;
     private function additionalJS()
     {
         $this->handler = <<< 'JS'
-            function searchSuggestionInput(input)
+             function searchSuggestionInput(input, list)
             {
                  $.ajax({
                 url: '{url}',
@@ -96,15 +96,15 @@ CSS;
                     console.log('success', response);
                 //    Display list items
                     if (response.results && response.results.length) {
-                        $('#{id}_list').html('');
+                        $(list).html('');
                         for(let i = 0; i < response.results.length; i++){
                             let item = response.results[i];
                             let item_html = $('<div></div>').addClass('vasilevit-suggestion-list-item');
                             item_html.append($('<div></div>').addClass('name').text(item.name));
                             item_html.append($('<div></div>').addClass('subname').text(item.subname));
-                            $('#{id}_list').append(item_html);
+                            $(list).append(item_html);
                         }
-                        $('#{id}_list').addClass('open');
+                        $(list).addClass('open');
                     }
                 },
                 error: function(response) {
@@ -115,7 +115,7 @@ CSS;
             
             
             $('#{id}').on('focus', function(e) {
-                searchSuggestionInput(this);
+                searchSuggestionInput(this, $('#{id}_list'));
                 if ($(this).val()) {
                     $('#{id}_list').addClass('open');
                 }
@@ -124,11 +124,11 @@ CSS;
             $('#{id}').on('blur', function(e) {
                     setTimeout(function() {
                         $('#{id}_list').removeClass('open');
-                    }, 500);
+                    }, 200);
             });
             
             $('#{id}').on('input', function(e) {
-              searchSuggestionInput(this);
+              searchSuggestionInput(this, $('#{id}_list'));
             });
             
             
